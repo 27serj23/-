@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    <h3>Отзывы</h3>
+    <ul>
+        {% for comment in post.comments.all %}
+            <li>{{ comment.author }}: {{ comment.content }}</li>
+        {% empty %}
+            <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_comment' post.id %}">Оставь отзыв</a>
+    <a href="{% url 'list' %}">Главная страница</a>
+{% endblock %}
